@@ -1,11 +1,5 @@
 package packman;
 
-	// I feel a bit bad about this data structure, so let me explain,
-	// Both of the booleans let you know direction,
-	// So if we're going vertical, the first integer is the index of the direction
-	// in the direction that's being gone or something?????
-	// and then positionOnOtherAxis is well, that.
-
 public abstract class Character {
 	
 	// I feel a bit bad about this data structure, so let me explain,
