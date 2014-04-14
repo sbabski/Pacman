@@ -22,21 +22,21 @@ class Pellet extends Eatable {
 	}
 	public WorldImage render(Posn loc) {
 		return new OverlayImages(
-				new CircleImage(loc,Constants.gridsize/5,new White()),
-				new RectangleImage(loc,Constants.gridsize,Constants.gridsize,new Blue()));
+				new RectangleImage(loc,Constants.gridsize,Constants.gridsize,new Blue()),
+				new DiskImage(loc,Constants.gridsize/8,new White()));
 	}
 }
 
 class Pill extends Eatable {
 	public Tile eat(Pacman p) {
-		p = new ScaryPacman(p);
 		p.score += 500;
+		p.eatScaryPill();
 		return new Path();
 	}
 	public WorldImage render(Posn loc) {
 		return new OverlayImages(
-				new CircleImage(loc,Constants.gridsize/3,new White()),
-				new RectangleImage(loc,Constants.gridsize,Constants.gridsize,new Blue()));
+				new RectangleImage(loc,Constants.gridsize,Constants.gridsize,new Blue()),
+				new DiskImage(loc,Constants.gridsize/5,new White()));
 	}
 }
 

@@ -6,4 +6,8 @@ public class Ghost extends Character {
 		super(v, p, c, pa);
 	}
 
+	void move(Map m) {
+		
+	}
+
 }

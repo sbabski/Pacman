@@ -24,9 +24,11 @@ public abstract class Character {
 	
 	
 	Integer getXCoord() {
-		if (this.verticalDirection){
+		if(this.verticalDirection){
 			return Constants.gridsize * this.columnOrRow + (Constants.gridsize/2);
-		} else { return this.positionOnOtherAxis;} 
+		} else { 
+			return this.positionOnOtherAxis;
+		} 
 	}
 	
 	Integer getYCoord() {
@@ -37,7 +39,29 @@ public abstract class Character {
 		}
 	}
 	
-	void move(){
-		
+	Integer getGridX() {
+		if(this.verticalDirection){
+			return this.columnOrRow;
+		} else {
+			return this.positionOnOtherAxis / Constants.gridsize;
+		}
 	}
+	
+	Integer getGridY() {
+		if(!this.verticalDirection){
+			return this.columnOrRow;
+		} else {
+			return this.positionOnOtherAxis / Constants.gridsize;
+		}
+	}
+	
+	boolean atIntersection() {
+		if(this.positiveDirection) {
+			return this.positionOnOtherAxis % Constants.gridsize == Constants.gridsize/2 - 1;
+		} else {
+			return this.positionOnOtherAxis % Constants.gridsize == Constants.gridsize/2;
+		}
+	}
+	
+	abstract void move(Map m);
 }
