@@ -1,6 +1,7 @@
 package packman;
 
 import java.util.*;
+import tester.*;
 
 class Constants {
 
@@ -19,7 +20,15 @@ class ExamplePacman {
 	Pacman ex = new Pacman(false,true,2,45,0,true,0);
     Worldstate w1 = new Worldstate(ex,new ArrayList<Ghost>(),new Map(Constants.testmap));
     
+    void test(Tester t) {
+    	t.checkExpect(this.ex.dnx(),0);
+    	t.checkExpect(this.ex.dny(),1);
+    	this.w1.onKeyEvent("up");
+    	t.checkExpect(this.ex.dnx(),-1);
+    	t.checkExpect(this.ex.dny(),0);
+    }
+    
 	
 	// run the first game	
-	boolean runAnimation = this.w1.bigBang(500,700,10);
+	boolean runAnimation = this.w1.bigBang(500,700,.1);
 }

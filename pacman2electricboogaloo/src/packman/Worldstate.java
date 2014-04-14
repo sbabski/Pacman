@@ -1,4 +1,5 @@
 package packman;
+
 import java.util.*;
 import java.awt.Color;
 
@@ -30,17 +31,17 @@ public class Worldstate extends World{
 		}
 		return this;
 	}
-	public World onKeyEvent(String s) {
-		if(s.equals("up")) {
+	public World onKeyEvent(String ke) {
+		if(ke.equals("up")) {
 			this.player.nextPositive = false;
 			this.player.nextVertical = true;
 		} else {
-			if(s.equals("down")) {
+			if(ke.equals("down")) {
 				this.player.nextPositive = true;
 				this.player.nextVertical = true;
 			} else {
 				this.player.nextVertical = false;
-				if(s.equals("left")) {
+				if(ke.equals("left")) {
 					this.player.nextPositive = false;
 				} else {
 					this.player.nextPositive = true;

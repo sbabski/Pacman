@@ -26,7 +26,11 @@ public class Map {
 					new RectangleImage(new Posn(w/2,Constants.gridsize/2),w,Constants.gridsize,new Black());
 			for(int j=0;j<board[0].length;j++) {
 				rowsult = 
-					new OverlayImagesXY(rowsult,board[i][j].render(new Posn((j *Constants.gridsize) + Constants.gridsize/2,(i*Constants.gridsize) + (Constants.gridsize*3)/2)), Constants.gridsize * j, 0);
+					new OverlayImagesXY(rowsult,board[i][j].render(
+							new Posn(
+									(j *Constants.gridsize) + Constants.gridsize/2,
+									(i*Constants.gridsize) + (Constants.gridsize*3)/2)), 
+								Constants.gridsize * j, 0);
 			}
 			result = new OverlayImages(result,rowsult);
 		}

@@ -24,7 +24,6 @@ public class Pacman extends Character {
 		this.spriteIncreasing = p.spriteIncreasing;
 		this.score = p.score;
 	}
-	
 	void eatScaryPill() {
 		this.toggleScary = true;
 	}
@@ -34,11 +33,33 @@ public class Pacman extends Character {
 	boolean canGoNextDirection(Map m) {
 		Integer y = this.getGridY();
 		Integer x = this.getGridX();
-		y = y + this.dy() % m.yLength();
-		x = x + this.dx() % m.xLength();
+		y = (y + this.dny()) % (m.yLength()-1);
+		x = (x + this.dnx()) % (m.xLength()-1);
 		return m.board[y][x].traversable();
 	}
 	Integer dx() {
+		Integer x = 0;
+		if(this.verticalDirection) {
+			if(this.positiveDirection) {
+				x += 1;
+			} else {
+				x += -1;
+			}
+		}
+		return x;
+	}
+	Integer dy() {
+		Integer y = 0;
+		if(!this.verticalDirection) {
+			if(this.positiveDirection) {
+				y += 1;
+			} else {
+				y += -1;
+			}
+		}
+		return y;
+	}
+	Integer dnx() {
 		Integer x = 0;
 		if(this.nextVertical) {
 			if(this.nextPositive) {
@@ -49,7 +70,7 @@ public class Pacman extends Character {
 		}
 		return x;
 	}
-	Integer dy() {
+	Integer dny() {
 		Integer y = 0;
 		if(!this.nextVertical) {
 			if(this.nextPositive) {
@@ -60,6 +81,7 @@ public class Pacman extends Character {
 		}
 		return y;
 	}
+
 	void move(Map m) {
 		if(this.flipping()) {
 			this.positiveDirection = this.nextPositive;
@@ -71,16 +93,16 @@ public class Pacman extends Character {
 			} 
 		} 
 		if(this.verticalDirection){
-			this.positionOnOtherAxis += dy();		
+			this.positionOnOtherAxis += this.dx();		
 		} else {
-			this.positionOnOtherAxis += dx();
+			this.positionOnOtherAxis += this.dy();
 		}
 	}
 	boolean turning() {
 		return this.nextVertical != this.verticalDirection;
 	}
 	boolean flipping() {
-		return !this.turning() && this.nextPositive != this.positiveDirection;
+		return !this.turning() && (this.nextPositive != this.positiveDirection);
 	}
 	void switchDirection() {
 		this.verticalDirection = this.nextVertical;
@@ -97,6 +119,9 @@ public class Pacman extends Character {
 		return new ScaryPacman(this);
 	}
 	WorldImage render() {
-		return new DiskImage(new Posn(this.getXCoord(),this.getYCoord()),Constants.gridsize/3,new Yellow());
+		return new DiskImage(
+				new Posn(this.getXCoord(),this.getYCoord()),
+				Constants.gridsize/3,
+				new Yellow());
 	}
 }
