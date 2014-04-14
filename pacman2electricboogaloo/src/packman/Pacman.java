@@ -37,31 +37,38 @@ public class Pacman extends Character {
 		x = (x + this.dnx()) % (m.xLength()-1);
 		return m.board[y][x].traversable();
 	}
+	String printIt() {
+		if(this.nextVertical == true) {
+			return "true";
+		} else {
+			return "false";
+		}
+	}
 	Integer dx() {
 		Integer x = 0;
-		if(this.verticalDirection) {
+		if(!this.verticalDirection) {
 			if(this.positiveDirection) {
-				x += 1;
+				x = 1;
 			} else {
-				x += -1;
+				x = -1;
 			}
 		}
 		return x;
 	}
 	Integer dy() {
 		Integer y = 0;
-		if(!this.verticalDirection) {
+		if(this.verticalDirection) {
 			if(this.positiveDirection) {
-				y += 1;
+				y = 1;
 			} else {
-				y += -1;
+				y = -1;
 			}
 		}
 		return y;
 	}
 	Integer dnx() {
 		Integer x = 0;
-		if(this.nextVertical) {
+		if(!this.nextVertical) {
 			if(this.nextPositive) {
 				x += 1;
 			} else {
@@ -72,7 +79,7 @@ public class Pacman extends Character {
 	}
 	Integer dny() {
 		Integer y = 0;
-		if(!this.nextVertical) {
+		if(this.nextVertical) {
 			if(this.nextPositive) {
 				y += 1;
 			} else {
@@ -87,15 +94,15 @@ public class Pacman extends Character {
 			this.positiveDirection = this.nextPositive;
 		}
 		if(this.atIntersection()) {
-			m.board[this.getGridY()][this.getGridX()].eat(this);
+			m.board[this.getGridY()][this.getGridX()] = m.board[this.getGridY()][this.getGridX()].eat(this);
 			if(this.canGoNextDirection(m) && this.turning()) {
 				this.switchDirection();
 			} 
 		} 
 		if(this.verticalDirection){
-			this.positionOnOtherAxis += this.dx();		
+			this.positionOnOtherAxis = this.positionOnOtherAxis + this.dy();		
 		} else {
-			this.positionOnOtherAxis += this.dy();
+			this.positionOnOtherAxis = this.positionOnOtherAxis + this.dx();
 		}
 	}
 	boolean turning() {
@@ -109,10 +116,12 @@ public class Pacman extends Character {
 		this.positiveDirection = this.nextPositive;
 		if(this.nextVertical) {
 			this.columnOrRow = this.getGridX();
-			this.positionOnOtherAxis = this.getYCoord();
+			this.positionOnOtherAxis = this.getXCoord();
+			//System.out.println(this.columnOrRow.toString());
 		} else {
 			this.columnOrRow = this.getGridY();
-			this.positionOnOtherAxis = this.getXCoord();
+			this.positionOnOtherAxis = this.getYCoord();
+			//System.out.println(this.columnOrRow.toString());
 		}
 	}
 	Pacman alternate() {
@@ -120,7 +129,7 @@ public class Pacman extends Character {
 	}
 	WorldImage render() {
 		return new DiskImage(
-				new Posn(this.getXCoord(),this.getYCoord()),
+				new Posn(this.getXCoord(),this.getYCoord()+Constants.gridsize),
 				Constants.gridsize/3,
 				new Yellow());
 	}

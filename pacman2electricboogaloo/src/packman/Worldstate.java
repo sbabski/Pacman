@@ -29,6 +29,7 @@ public class Worldstate extends World{
 		for(Ghost g : enemies) {
 			g.move(map);
 		}
+		System.out.println(player.getGridX().toString());
 		return this;
 	}
 	public World onKeyEvent(String ke) {

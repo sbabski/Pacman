@@ -9,17 +9,18 @@ class Constants {
 	// you'd better fucking know what you're getting into.
 	public static Integer gridsize = 40;
 	public static Tile[][] testmap = {
-		{new Path(), new Pellet(), new Path()},
-		{new Path(), new Pellet(), new Path()},
-		{new Pellet(), new Wall(), new Pellet()},
-		{new Pill(), new Wall(), new Pill()}
+		{new Path(), new Pellet(), new Pellet(), new Path()},
+		{new Path(), new Pellet(), new Pellet(), new Path()},
+		{new Pellet(), new Wall(), new Pellet(), new Pellet()},
+		{new Pill(), new Wall(), new Wall(), new Pill()},
+		{new Path(), new Pellet(), new Pellet(), new Path()}
 	};
 }
 
 class ExamplePacman {
-	Pacman ex = new Pacman(false,true,2,45,0,true,0);
+	Pacman ex = new Pacman(false,true,1,45,0,true,0);
     Worldstate w1 = new Worldstate(ex,new ArrayList<Ghost>(),new Map(Constants.testmap));
-    
+    /*
     void test(Tester t) {
     	t.checkExpect(this.ex.dnx(),0);
     	t.checkExpect(this.ex.dny(),1);
@@ -27,7 +28,7 @@ class ExamplePacman {
     	t.checkExpect(this.ex.dnx(),-1);
     	t.checkExpect(this.ex.dny(),0);
     }
-    
+    */
 	
 	// run the first game	
 	boolean runAnimation = this.w1.bigBang(500,700,.1);

@@ -43,7 +43,7 @@ public abstract class Character {
 		if(this.verticalDirection){
 			return this.columnOrRow;
 		} else {
-			return this.positionOnOtherAxis / Constants.gridsize;
+			return (this.positionOnOtherAxis / Constants.gridsize);
 		}
 	}
 	
@@ -51,7 +51,7 @@ public abstract class Character {
 		if(!this.verticalDirection){
 			return this.columnOrRow;
 		} else {
-			return this.positionOnOtherAxis / Constants.gridsize;
+			return (this.positionOnOtherAxis / Constants.gridsize);
 		}
 	}
 	
