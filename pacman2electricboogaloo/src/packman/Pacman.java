@@ -85,6 +85,9 @@ public class Pacman extends Character {
 			new White());
 	}
 	WorldImage renderLives(Integer i) {
+		if(i < 1) {
+			return this.renderLives(1);
+		}
 		WorldImage image = new FromFileImage(
 				new Posn((Constants.mapWidth*Constants.gridsize) - (Constants.gridsize*i), Constants.gridsize / 2),
 				"PacImages/Pacman4.png");

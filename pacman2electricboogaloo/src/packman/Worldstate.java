@@ -29,6 +29,7 @@ public class Worldstate extends World{
 		for(Ghost g : enemies) {
 			g.onTick(map,player);
 		}
+		System.out.println(this.player.lives.toString());
 		return this;
 	}
 	public World onKeyEvent(String ke) {
@@ -52,14 +53,10 @@ public class Worldstate extends World{
 	}
 	public WorldImage renderGhosts(Integer i) {
 		WorldImage r = enemies[i-1].render();
-		if(i < 1) {
-			throw new RuntimeException("HALP");
-		}
 		if(i == 1) {
 			return r;
 		} else {
 			return new OverlayImages(this.renderGhosts(i - 1),r);
-					
 		}
 	}
 
@@ -67,7 +64,25 @@ public class Worldstate extends World{
 		return new OverlayImages(map.render(),
 				new OverlayImages(this.renderGhosts(this.enemies.length),
 						new OverlayImages(player.render(),
-								new OverlayImages(player.renderScore(),player.renderLives(player.lives)))));
+							new OverlayImages(player.renderScore(),player.renderLives(player.lives)))));
+	}
+	public WorldEnd worldEnds() {
+		if(this.player.lives == 0) {
+			return new WorldEnd(
+					true,new OverlayImages(
+							this.makeImage(),
+							new OverlayImages(
+									new TextImage(
+											new Posn(Constants.mapWidth * Constants.gridsize/2,200),
+											"GAME OVER",
+											40,1,new Red()),
+									new TextImage(
+											new Posn(Constants.mapWidth * Constants.gridsize/2,400),
+											"YOUR SCORE: "+this.player.score.toString(),
+											30,1,new Red()))));
+		} else {
+			return new WorldEnd(false,this.makeImage());
+		}
 	}
 
 }

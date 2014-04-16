@@ -37,7 +37,7 @@ public abstract class Ghost extends Character {
 		}
 	}
 	void randomTurn() {
-		if(this.timer % 100 == 0) {
+		if(this.timer % 50 == 0) {
 			if(this.timer % 3 == 0) {
 				this.nextPositive = true;
 			}
