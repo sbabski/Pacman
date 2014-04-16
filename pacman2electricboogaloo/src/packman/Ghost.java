@@ -11,7 +11,10 @@ public abstract class Ghost extends Character {
 		super(v, p, c, pa);
 		this.color = color;
 	}
-
+	
+	void onTick(Map m) {
+		
+	}
 	void move(Map m) {
 		
 	}

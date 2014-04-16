@@ -27,7 +27,7 @@ public class Worldstate extends World{
 			player = player.alternate();
 		}
 		for(Ghost g : enemies) {
-			g.move(map);
+			g.onTick(map);
 		}
 		return this;
 	}

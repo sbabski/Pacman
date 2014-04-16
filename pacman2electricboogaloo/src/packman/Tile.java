@@ -1,5 +1,7 @@
 package packman;
 
+import java.awt.Color;
+
 import javalib.colors.*;
 import javalib.worldimages.*;
 
@@ -38,6 +40,24 @@ class Pill extends Eatable {
 				new RectangleImage(loc,Constants.gridsize,Constants.gridsize,new Black()),
 				new DiskImage(loc,Constants.gridsize/4,new White()));
 	}
+}
+
+abstract class Fruit extends Eatable {
+	Integer val;
+	Color color;
+	public Tile eat(Pacman p) {
+		p.score += val;
+		return new Path();
+	}
+	public WorldImage render(Posn loc) {
+		return new OverlayImages(
+				new RectangleImage(loc,Constants.gridsize,Constants.gridsize,new Black()),
+				new DiskImage(loc,Constants.gridsize/4,color));
+	}
+}
+class Cherry extends Fruit {
+	Integer val = 100;
+	Red color = new Red();
 }
 
 class Wall implements Tile {
