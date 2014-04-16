@@ -12,12 +12,12 @@ import javalib.worldimages.*;
 
 public class Worldstate extends World{
 	Pacman player;
-	ArrayList<Ghost> enemies;
+	Ghost[] enemies;
 	Map map;
 
-	Worldstate(Pacman p, ArrayList<Ghost> e, Map m){
+	Worldstate(Pacman p, Ghost[] g, Map m){
 		this.player = p;
-		this.enemies = e;
+		this.enemies = g;
 		this.map = m;
 	}
 	
@@ -27,7 +27,7 @@ public class Worldstate extends World{
 			player = player.alternate();
 		}
 		for(Ghost g : enemies) {
-			g.onTick(map);
+			g.onTick(map,player);
 		}
 		return this;
 	}
@@ -50,11 +50,24 @@ public class Worldstate extends World{
 		}
 		return this;
 	}
+	public WorldImage renderGhosts(Integer i) {
+		WorldImage r = enemies[i-1].render();
+		if(i < 1) {
+			throw new RuntimeException("HALP");
+		}
+		if(i == 1) {
+			return r;
+		} else {
+			return new OverlayImages(this.renderGhosts(i - 1),r);
+					
+		}
+	}
 
 	public WorldImage makeImage() {
 		return new OverlayImages(map.render(),
-				new OverlayImages(player.render(),
-						new OverlayImages(player.renderScore(),player.renderLives(player.lives))));
+				new OverlayImages(this.renderGhosts(this.enemies.length),
+						new OverlayImages(player.render(),
+								new OverlayImages(player.renderScore(),player.renderLives(player.lives)))));
 	}
 
 }

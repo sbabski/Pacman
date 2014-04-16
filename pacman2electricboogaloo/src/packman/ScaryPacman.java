@@ -6,13 +6,14 @@ import javalib.worldimages.*;
 public class ScaryPacman extends Pacman {
 	Integer timer = 600;
 	
-	ScaryPacman(boolean v, boolean p, Integer c, Integer pa, Integer sn, boolean si, Integer sc, Integer l) {
-		super(v, p, c, pa,sn,si,sc,l);
+	ScaryPacman(boolean v, boolean p, Integer c, Integer pa, Integer sc, Integer l) {
+		super(v, p, c, pa,sc,l);
 	}
 	ScaryPacman(Pacman p) {
 		super(p.verticalDirection,p.positiveDirection,
-				p.columnOrRow,p.positionOnOtherAxis,
-				p.spriteNumber,p.spriteIncreasing,p.score,p.lives);
+				p.columnOrRow,p.positionOnOtherAxis,p.score,p.lives);
+		this.nextPositive = p.nextPositive;
+		this.nextVertical = p.nextVertical;
 	}
 	
 	void eatScaryPill() {
@@ -24,15 +25,20 @@ public class ScaryPacman extends Pacman {
 			this.toggleScary = true;
 		}
 		this.move(m);
+		this.chomp();
 	}
 	Pacman alternate() {
 		return new Pacman(this);
 	}
+	void hitGhost(Ghost g) {
+		g.columnOrRow = 8;
+		g.positionOnOtherAxis = 315;
+		g.verticalDirection = false;
+	}
 	WorldImage render() {
-		return new DiskImage(
+		return new FromFileImage(
 				new Posn(this.getXCoord(),this.getYCoord()+Constants.gridsize),
-				Constants.gridsize/3,
-				new Red());
+				"PacImages/Scary"+this.spriteNumber.toString()+".png");
 	}
 }
 

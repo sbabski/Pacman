@@ -6,20 +6,20 @@ import javalib.worldimages.*;
 public class Pacman extends Character {
 	Integer score;
 	Integer lives;
-	Integer spriteNumber;
-	boolean spriteIncreasing;
+	Integer spriteNumber = 0;
+	boolean spriteIncreasing = true;
 	boolean toggleScary = false;
 	
-	Pacman(boolean v, boolean p, Integer c, Integer pa, Integer sn, boolean si, Integer sc, Integer l) {
+	Pacman(boolean v, boolean p, Integer c, Integer pa, Integer sc, Integer l) {
 		super(v, p, c, pa);
-		this.spriteNumber = sn;
-		this.spriteIncreasing = si;
 		this.score = sc;
 		this.lives = l;
 	}
 	Pacman(Pacman p) {
 		super(p.verticalDirection,p.positiveDirection,
 				p.columnOrRow,p.positionOnOtherAxis);
+		this.nextVertical = p.nextVertical;
+		this.nextPositive = p.nextPositive;
 		this.spriteNumber = p.spriteNumber;
 		this.spriteIncreasing = p.spriteIncreasing;
 		this.score = p.score;
@@ -30,44 +30,21 @@ public class Pacman extends Character {
 	}
 	void onTick(Map m) {
 		this.move(m);
+		this.chomp();
 	}
-	boolean canGoNextDirection(Map m) {
-		Integer y = this.getGridY();
-		Integer x = this.getGridX();
-		y = ((y + this.dny()) % (m.yLength()-1));
-		x = ((x + (m.xLength()-1) + this.dnx()) % (m.xLength()-1));
-		return m.board[y][x].traversable();
-	}
-	boolean canContinue(Map m) {
-		Integer y = this.getGridY();
-		Integer x = this.getGridX();
-		y = ((y + this.dy()) % (m.yLength()-1));
-		x = ((x + (m.xLength()-1) + this.dx()) % (m.xLength()-1));
-		return m.board[y][x].traversable();
-	}
-	Integer dnx() {
-		Integer x = 0;
-		if(!this.nextVertical) {
-			if(this.nextPositive) {
-				x += 1;
-			} else {
-				x += -1;
-			}
+	void chomp() {
+		if(this.spriteNumber == 6) {
+			this.spriteIncreasing = false;
 		}
-		return x;
-	}
-	Integer dny() {
-		Integer y = 0;
-		if(this.nextVertical) {
-			if(this.nextPositive) {
-				y += 1;
-			} else {
-				y += -1;
-			}
+		if(this.spriteNumber == 0) {
+			this.spriteIncreasing = true;
 		}
-		return y;
+		if(this.spriteIncreasing) {
+			this.spriteNumber++;
+		} else {
+			this.spriteNumber--;
+		}
 	}
-
 	void move(Map m) {
 		if(this.flipping()) {
 			this.positiveDirection = this.nextPositive;
@@ -84,27 +61,20 @@ public class Pacman extends Character {
 			this.goForth(m);
 		}
 	}
-	void switchDirection() {
-		if(this.nextVertical) {
-			Integer c = this.getGridX();
-			this.positionOnOtherAxis = this.getYCoord();
-			this.columnOrRow = c;
-		} else {
-			Integer c = this.getGridY();
-			this.positionOnOtherAxis = this.getXCoord();
-			this.columnOrRow = c;
-		}
-		this.verticalDirection = this.nextVertical;
-		this.positiveDirection = this.nextPositive;
-	}
 	Pacman alternate() {
 		return new ScaryPacman(this);
 	}
+	void hitGhost(Ghost g) {
+		this.lives -= 1;
+		this.verticalDirection = Constants.startV;
+		this.positiveDirection = Constants.startP;
+		this.columnOrRow = Constants.startX;
+		this.positionOnOtherAxis = Constants.startY;
+	}
 	WorldImage render() {
-		return new DiskImage(
+		return new FromFileImage(
 				new Posn(this.getXCoord(),this.getYCoord()+Constants.gridsize),
-				Constants.gridsize/3,
-				new Yellow());
+				"PacImages/Pacman"+this.spriteNumber.toString()+".png");
 	}
 	WorldImage renderScore() {
 		return new TextImage(
@@ -115,17 +85,13 @@ public class Pacman extends Character {
 			new White());
 	}
 	WorldImage renderLives(Integer i) {
+		WorldImage image = new FromFileImage(
+				new Posn((Constants.mapWidth*Constants.gridsize) - (Constants.gridsize*i), Constants.gridsize / 2),
+				"PacImages/Pacman4.png");
 		if(i == 1) {
-			return new DiskImage(
-					new Posn((Constants.mapWidth*Constants.gridsize) - Constants.gridsize, Constants.gridsize / 2),
-					Constants.gridsize/3,
-					new Yellow());
+			return image;
+		} else {
+			return new OverlayImages(this.renderLives(i-1),image);
 		}
-		return new OverlayImages(
-				this.renderLives(i - 1),
-				new DiskImage(
-						new Posn((Constants.mapWidth*Constants.gridsize) - (Constants.gridsize * i), Constants.gridsize / 2),
-						Constants.gridsize/3,
-						new Yellow()));
 	}
 }

@@ -22,7 +22,7 @@ public abstract class Character {
 		this.positiveDirection = p;
 		this.columnOrRow = c;
 		this.positionOnOtherAxis = pa;
-	}
+		}
 	
 	
 	Integer getXCoord() {
@@ -79,6 +79,35 @@ public abstract class Character {
 		}
 		return y;
 	}
+	boolean canGoNextDirection(Map m) {
+		Integer y = this.getGridY();
+		Integer x = this.getGridX();
+		y = ((y + this.dny()) % (m.yLength()-1));
+		x = ((x + (m.xLength()-1) + this.dnx()) % (m.xLength()-1));
+		return m.board[y][x].traversable();
+	}
+	Integer dnx() {
+		Integer x = 0;
+		if(!this.nextVertical) {
+			if(this.nextPositive) {
+				x += 1;
+			} else {
+				x += -1;
+			}
+		}
+		return x;
+	}
+	Integer dny() {
+		Integer y = 0;
+		if(this.nextVertical) {
+			if(this.nextPositive) {
+				y += 1;
+			} else {
+				y += -1;
+			}
+		}
+		return y;
+	}
 	boolean atIntersection() {
 		if(this.positiveDirection) {
 			return this.positionOnOtherAxis % Constants.gridsize == Constants.gridsize/2 - 1;
@@ -93,11 +122,32 @@ public abstract class Character {
 			this.positionOnOtherAxis = ((this.positionOnOtherAxis + this.dx() + (Constants.gridsize*(m.yLength()-1))) % (Constants.gridsize*(m.yLength()-1)));
 		}
 	}
+	boolean canContinue(Map m) {
+		Integer y = this.getGridY();
+		Integer x = this.getGridX();
+		y = ((y + this.dy()) % (m.yLength()-1));
+		x = ((x + (m.xLength()-1) + this.dx()) % (m.xLength()-1));
+		return m.board[y][x].traversable();
+	}
 	boolean turning() {
 		return this.nextVertical != this.verticalDirection;
 	}
 	boolean flipping() {
 		return !this.turning() && (this.nextPositive != this.positiveDirection);
 	}
+	void switchDirection() {
+		if(this.nextVertical) {
+			Integer c = this.getGridX();
+			this.positionOnOtherAxis = this.getYCoord();
+			this.columnOrRow = c;
+		} else {
+			Integer c = this.getGridY();
+			this.positionOnOtherAxis = this.getXCoord();
+			this.columnOrRow = c;
+		}
+		this.verticalDirection = this.nextVertical;
+		this.positiveDirection = this.nextPositive;
+	}
 	abstract void move(Map m);
+
 }

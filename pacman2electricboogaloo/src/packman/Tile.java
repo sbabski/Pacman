@@ -19,7 +19,7 @@ abstract class Eatable implements Tile {
 
 class Pellet extends Eatable {
 	public Tile eat(Pacman p) {
-		p.score += 100;
+		p.score += 10;
 		return new Path();
 	}
 	public WorldImage render(Posn loc) {
@@ -31,7 +31,7 @@ class Pellet extends Eatable {
 
 class Pill extends Eatable {
 	public Tile eat(Pacman p) {
-		p.score += 500;
+		p.score += 50;
 		p.eatScaryPill();
 		return new Path();
 	}
@@ -42,9 +42,13 @@ class Pill extends Eatable {
 	}
 }
 
-abstract class Fruit extends Eatable {
+class Fruit extends Eatable {
 	Integer val;
-	Color color;
+	String filename;
+	Fruit(Integer v,String f) {
+		this.val = v;
+		this.filename = f;
+	}
 	public Tile eat(Pacman p) {
 		p.score += val;
 		return new Path();
@@ -52,12 +56,8 @@ abstract class Fruit extends Eatable {
 	public WorldImage render(Posn loc) {
 		return new OverlayImages(
 				new RectangleImage(loc,Constants.gridsize,Constants.gridsize,new Black()),
-				new DiskImage(loc,Constants.gridsize/4,color));
+				new FromFileImage(loc,this.filename));
 	}
-}
-class Cherry extends Fruit {
-	Integer val = 100;
-	Red color = new Red();
 }
 
 class Wall implements Tile {

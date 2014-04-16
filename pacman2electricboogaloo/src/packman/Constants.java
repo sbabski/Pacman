@@ -8,151 +8,90 @@ class Constants {
 	// NOTA BENE: If you ever make this an odd number,
 	// you'd better fucking know what you're getting into.
 	public static Integer gridsize = 30;
-	public static Tile[] wall =
-		{new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),
-		new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),
-		new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),
-		new Wall(),new Wall(),new Wall(),new Wall(),new Wall()};
-	//No walls
-	public static Tile[] zero =
-		{new Wall(),new Pellet(),new Pellet(),new Pellet(),new Pellet(),
-		new Pellet(),new Pellet(),new Pellet(),new Pellet(),new Pellet(),new Pellet(),
-		new Pellet(),new Pellet(),new Pellet(),new Pellet(),new Pellet(),
-		new Pellet(),new Pellet(),new Pellet(),new Pellet(),new Wall()};
-	//1
-	public static Tile[] one =
-		{new Wall(),new Pellet(),new Pellet(),new Pellet(),new Pellet(),
-		new Pellet(),new Pellet(),new Pellet(),new Pellet(),new Pellet(),new Wall(),
-		new Pellet(),new Pellet(),new Pellet(),new Pellet(),new Pellet(),
-		new Pellet(),new Pellet(),new Pellet(),new Pellet(),new Wall()};
-	//3 3 1 3 3
-	public static Tile[] two = 
-		{new Wall(),new Pellet(),new Wall(),new Wall(),new Wall(),
-		new Pellet(),new Wall(),new Wall(),new Wall(),new Pellet(),new Wall(),
-		new Pellet(),new Wall(),new Wall(),new Wall(),new Pellet(),
-		new Wall(),new Wall(),new Wall(),new Pellet(),new Wall()};
-	//two, but pills on sides
-	public static Tile[] twoPill = 
-		{new Wall(),new Pill(),new Wall(),new Wall(),new Wall(),
-		new Pellet(),new Wall(),new Wall(),new Wall(),new Pellet(),new Wall(),
-		new Pellet(),new Wall(),new Wall(),new Wall(),new Pellet(),
-		new Wall(),new Wall(),new Wall(),new Pill(),new Wall()};
-	//3 1 5 1 3
-	public static Tile[] three =
-		{new Wall(),new Pellet(),new Wall(),new Wall(),new Wall(),
-		new Pellet(),new Wall(),new Pellet(),new Wall(),new Wall(),new Wall(),
-		new Wall(),new Wall(),new Pellet(),new Wall(),new Pellet(),
-		new Wall(),new Wall(),new Wall(),new Pellet(),new Wall()};
-	//1 1 1
-	public static Tile[] four =
-		{new Wall(),new Pellet(),new Pellet(),new Pellet(),new Pellet(),
-		new Pellet(),new Wall(),new Pellet(),new Pellet(),new Pellet(),new Wall(),
-		new Pellet(),new Pellet(),new Pellet(),new Wall(),new Pellet(),
-		new Pellet(),new Pellet(),new Pellet(),new Pellet(),new Wall()};
-	//4 3 1 3 4
-	public static Tile[] five =
-		{new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),
-		new Pellet(),new Wall(),new Wall(),new Wall(),new Path(),new Wall(),
-		new Path(),new Wall(),new Wall(),new Wall(),new Pellet(),
-		new Wall(),new Wall(),new Wall(),new Wall(), new Wall()};
-	// paths on sides
-	public static Tile[] six =
-		{new Path(),new Path(),new Path(),new Path(),new Wall(),
-		new Pellet(),new Wall(),new Path(),new Path(),new Path(),new Path(),
-		new Path(),new Path(),new Path(),new Wall(),new Pellet(),
-		new Wall(),new Path(),new Path(),new Path(), new Path()};
-	//4 1 5 1 4
-	public static Tile[] seven =
-		{new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),
-		new Pellet(),new Wall(),new Path(),new Wall(),new Wall(),new Wall(),
-		new Wall(),new Wall(),new Path(),new Wall(),new Pellet(),
-		new Wall(),new Wall(),new Wall(),new Wall(), new Wall()};
-	//center
-	public static Tile[] eight =
-		{new Path(),new Path(),new Path(),new Path(),new Path(),
-		new Pellet(),new Path(),new Path(),new Wall(),new Path(),new Path(),
-		new Path(),new Wall(),new Path(),new Path(),new Pellet(),
-		new Path(),new Path(),new Path(),new Path(),new Path()};
-	//1 1
-	public static Tile[] nine = 
-		{new Wall(),new Pill(),new Pellet(),new Pellet(),new Wall(),
-		new Pellet(),new Pellet(),new Pellet(),new Pellet(),new Pellet(),new Pellet(),
-		new Pellet(),new Pellet(),new Pellet(),new Pellet(),new Pellet(),
-		new Wall(),new Pellet(),new Pellet(),new Pill(),new Wall()};
-	//2 1 1 5 1 1 2
-	public static Tile[] ten = 
-		{new Wall(),new Wall(),new Wall(),new Pellet(),new Wall(),
-		new Pellet(),new Wall(),new Pellet(),new Wall(),new Wall(),new Wall(),
-		new Wall(),new Wall(),new Pellet(),new Wall(),new Pellet(),
-		new Wall(),new Pellet(),new Wall(),new Wall(),new Wall()};
-	//7 1 7	
-	public static Tile[] eleven =
-		{new Wall(),new Pellet(),new Wall(),new Wall(),new Wall(),
-		new Wall(),new Wall(),new Wall(),new Wall(),new Pellet(),new Wall(),
-		new Pellet(),new Wall(),new Wall(),new Wall(),new Wall(),
-		new Wall(),new Wall(),new Wall(),new Pellet(),new Wall()};
-			
-	public static Tile[] a =
-		{new Wall(),new Pellet(),new Pellet(),new Pellet(),new Wall(),
-		new Pellet(),new Pellet(),new Pellet(),new Wall(),new Pellet(),new Wall(),
-		new Pellet(),new Wall(),new Pellet(),new Pellet(),new Pellet(),
-		new Wall(),new Pellet(),new Pellet(),new Pellet(),new Wall()};
-	public static Tile[] b =
-		{new Wall(),new Wall(),new Wall(),new Pellet(),new Wall(),
-		new Pellet(),new Wall(),new Pellet(),new Wall(),new Pellet(),new Pellet(),
-		new Pellet(),new Wall(),new Pellet(),new Wall(),new Pellet(),
-		new Wall(),new Pellet(),new Wall(),new Wall(),new Wall()};
-	public static Tile[] c =
-		{new Path(),new Path(),new Wall(),new Pellet(),new Wall(),
-		new Pellet(),new Wall(),new Pellet(),new Wall(),new Pellet(),new Wall(),
-		new Pellet(),new Wall(),new Pellet(),new Wall(),new Pellet(),
-		new Wall(),new Pellet(),new Wall(),new Path(),new Path()};
-	public static Tile[] d =
-		{new Path(),new Path(),new Wall(),new Pellet(),new Pellet(),
-		new Pellet(),new Wall(),new Pellet(),new Pellet(),new Pellet(),new Wall(),
-		new Pellet(),new Pellet(),new Pellet(),new Wall(),new Pellet(),
-		new Pellet(),new Pellet(),new Wall(),new Path(),new Path()};
-	public static Tile[] e =
-		{new Path(),new Path(),new Wall(),new Pellet(),new Wall(),
-		new Wall(),new Wall(),new Pellet(),new Wall(),new Wall(),new Wall(),
-		new Wall(),new Wall(),new Pellet(),new Wall(),new Wall(),
-		new Wall(),new Pellet(),new Wall(),new Path(),new Path()};
-	public static Tile[] f =
-		{new Path(),new Path(),new Wall(),new Pellet(),new Pellet(),
-		new Pellet(),new Pellet(),new Pellet(),new Pellet(),new Pellet(),new Pellet(),
-		new Pellet(),new Pellet(),new Pellet(),new Pellet(),new Pellet(),
-		new Pellet(),new Pellet(),new Wall(),new Path(),new Path()};
-	public static Tile[] g =
-		{new Wall(),new Wall(),new Wall(),new Pellet(),new Wall(),
-		new Pellet(),new Wall(),new Pellet(),new Wall(),new Wall(),new Wall(),
-		new Wall(),new Wall(),new Pellet(),new Wall(),new Pellet(),
-		new Wall(),new Pellet(),new Wall(),new Wall(),new Wall()};
-	public static Tile[] h =
-		{new Path(),new Path(),new Path(),new Path(),new Wall(),
-		new Pellet(),new Wall(),new Path(),new Wall(),new Path(),new Path(),
-		new Path(),new Wall(),new Path(),new Wall(),new Pellet(),
-		new Wall(),new Path(),new Path(),new Path(),new Path()};
 	
-	public static Tile[][] testmap = 
-		{Constants.wall,Constants.one,Constants.two,
-		Constants.twoPill,Constants.zero,Constants.three,
-		Constants.four,Constants.five,Constants.six,
-		Constants.seven,Constants.eight,Constants.seven.clone(),
-		Constants.six.clone(),Constants.seven.clone(),Constants.one.clone(),
-		Constants.two.clone(),Constants.nine,Constants.ten,
-		Constants.four.clone(),Constants.eleven,Constants.zero.clone(),
-		Constants.wall.clone()};
-	public static Tile[][] testmapTwo =
-		{Constants.wall,Constants.one,Constants.twoPill,
-		Constants.a,Constants.b,Constants.c,
-		Constants.d,Constants.e,Constants.f,
-		Constants.g,Constants.h};
-	public static Integer mapWidth = Constants.testmap[0].length;
+	public static Fruit cherry = new Fruit(100,"PacImages/Cherry.png");
+	public static Fruit apple = new Fruit(200,"PacImages/Apple.png");
+	public static Wall wall = new Wall();
+	public static Pellet pell = new Pellet();
+	public static Pill pill = new Pill();
+	public static Path path = new Path();
+	
+	public static Tile[] border = {wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall};
+	public static Tile[] zero = {wall,pell,pell,pell,pell,pell,cherry,pell,pell,pell,pell,pell,pell,pell,apple,pell,pell,pell,pell,pell,wall};
+	public static Tile[] one = {wall,pell,pell,pell,pell,pell,pell,pell,pell,pell,wall,pell,pell,pell,pell,pell,pell,pell,pell,pell,wall};
+	public static Tile[] two = {wall,pell,wall,wall,wall,pell,wall,wall,wall,pell,wall,pell,wall,wall,wall,pell,wall,wall,wall,pell,wall};
+	public static Tile[] twoPill = {wall,pill,wall,wall,wall,pell,wall,wall,wall,pell,wall,pell,wall,wall,wall,pell,wall,wall,wall,pill,wall};
+	public static Tile[] three = {wall,pell,wall,wall,wall,pell,wall,pell,wall,wall,wall,wall,wall,pell,wall,pell,wall,wall,wall,pell,wall};
+	public static Tile[] four = {wall,pell,pell,pell,pell,pell,wall,pell,pell,pell,wall,pell,pell,pell,wall,pell,pell,pell,pell,pell,wall};
+	public static Tile[] five =	{wall,wall,wall,wall,wall,pell,wall,wall,wall,path,wall,path,wall,wall,wall,pell,wall,wall,wall,wall,wall};
+	public static Tile[] six = {path,path,path,path,wall,pell,wall,path,path,path,path,path,path,path,wall,pell,wall,path,path,path,path};
+	public static Tile[] seven = {wall,wall,wall,wall,wall,pell,wall,path,wall,wall,wall,wall,wall,path,wall,pell,wall,wall,wall,wall,wall};
+	public static Tile[] eight = {path,path,path,path,path,apple,path,path,wall,path,path,path,wall,path,path,cherry,path,path,path,path,path};
+	public static Tile[] nine = {wall,pill,pell,pell,wall,pell,pell,pell,pell,pell,pell,pell,pell,pell,pell,pell,wall,pell,pell,pill,wall};
+	public static Tile[] ten = {wall,wall,wall,pell,wall,pell,wall,pell,wall,wall,wall,wall,wall,pell,wall,pell,wall,pell,wall,wall,wall};	
+	public static Tile[] eleven = {wall,pell,wall,wall,wall,wall,wall,wall,wall,pell,wall,pell,wall,wall,wall,wall,wall,wall,wall,pell,wall};
+			
+	public static Tile[] a = {wall,pell,pell,pell,wall,pell,pell,pell,wall,pell,wall,pell,wall,pell,pell,pell,wall,pell,pell,pell,wall};
+	public static Tile[] b = {wall,wall,wall,pell,wall,pell,wall,cherry,wall,pell,pell,pell,wall,apple,wall,pell,wall,pell,wall,wall,wall};
+	public static Tile[] c = {path,path,wall,pell,wall,pell,wall,pell,wall,pell,wall,pell,wall,pell,wall,pell,wall,pell,wall,path,path};
+	public static Tile[] d = {path,path,wall,pell,pell,pell,wall,pell,pell,pell,wall,pell,pell,pell,wall,pell,pell,pell,wall,path,path};
+	public static Tile[] e = {path,path,wall,pell,wall,wall,wall,pell,wall,wall,wall,wall,wall,pell,wall,wall,wall,pell,wall,path,path};
+	public static Tile[] f = {path,path,wall,apple,pell,pell,pell,pell,pell,pell,pell,pell,pell,pell,pell,pell,pell,cherry,wall,path,path};
+	public static Tile[] g = {wall,wall,wall,path,wall,pell,wall,path,wall,wall,wall,wall,wall,path,wall,pell,wall,path,wall,wall,wall};
+	public static Tile[] h = {path,path,path,path,wall,pell,wall,path,wall,path,path,path,wall,path,wall,pell,wall,path,path,path,path};
+	public static Tile[] i = {wall,wall,wall,path,wall,pell,wall,wall,wall,path,wall,path,wall,wall,wall,pell,wall,path,wall,wall,wall};
+	public static Tile[] j = {wall,pill,pell,pell,wall,apple,pell,pell,pell,pell,pell,pell,pell,pell,pell,cherry,wall,pell,pell,pill,wall};
+	
+	public static Tile[] k = {wall,pill,wall,pell,pell,pell,wall,pell,pell,pell,wall,pell,pell,pell,wall,pell,pell,pell,wall,pill,wall};
+	public static Tile[] l = {wall,pell,wall,pell,wall,wall,wall,path,wall,pell,wall,pell,wall,path,wall,wall,wall,pell,wall,pell,wall};
+	public static Tile[] m = {wall,pell,wall,wall,wall,pell,wall,path,wall,pell,pell,pell,wall,path,wall,pell,wall,wall,wall,pell,wall};
+	public static Tile[] n = {wall,cherry,pell,pell,pell,pell,wall,path,wall,wall,wall,wall,wall,path,wall,pell,pell,pell,pell,apple,wall};
+	public static Tile[] o = {wall,wall,wall,pell,wall,pell,path,path,path,path,path,path,path,path,path,pell,wall,pell,wall,wall,wall};
+	public static Tile[] p = {path,path,wall,pell,wall,pell,wall,path,wall,wall,wall,wall,wall,path,wall,pell,wall,pell,wall,path,path};
+	public static Tile[] q = {path,path,wall,pell,pell,pell,wall,path,wall,path,path,path,wall,path,wall,pell,pell,pell,wall,path,path};
+	public static Tile[] r = {path,path,wall,pell,wall,wall,wall,path,wall,wall,wall,wall,wall,path,wall,wall,wall,pell,wall,path,path};
+	public static Tile[] s = {path,path,wall,apple,path,path,path,path,path,path,path,path,path,path,path,path,path,cherry,wall,path,path};
+	public static Tile[] t = {wall,wall,wall,pell,wall,wall,wall,wall,wall,path,wall,path,wall,wall,wall,wall,wall,pell,wall,wall,wall};
+	public static Tile[] u = {path,path,path,pell,wall,pell,pell,pell,pell,pell,wall,pell,pell,pell,pell,pell,wall,pell,path,path,path};
+	public static Tile[] v = {wall,wall,wall,pell,wall,pell,wall,cherry,wall,wall,wall,wall,wall,apple,wall,pell,wall,pell,wall,wall,wall};
+	public static Tile[] w = {wall,pell,pell,pell,pell,pell,wall,pell,pell,pell,pell,pell,pell,pell,wall,pell,pell,pell,pell,pell,wall};
+	public static Tile[] x = {wall,pell,wall,pell,pell,pell,pell,pell,pell,pell,wall,pell,pell,pell,pell,pell,pell,pell,wall,pell,wall};
+	public static Tile[] y = {wall,pell,wall,pell,wall,wall,wall,pell,wall,wall,wall,wall,wall,pell,wall,wall,wall,pell,wall,pell,wall};
+	public static Tile[] z = {path,pell,pell,pell,pell,pell,wall,path,wall,pell,wall,pell,wall,path,wall,pell,pell,pell,pell,pell,path};	
+
+	
+	public static Tile[][] levelOne = 
+		{Constants.border,Constants.one,Constants.two,Constants.twoPill,Constants.zero,Constants.three,
+		Constants.four,Constants.five,Constants.six,Constants.seven,Constants.eight,Constants.seven.clone(),
+		Constants.six.clone(),Constants.seven.clone(),Constants.one.clone(),Constants.two.clone(),Constants.nine,Constants.ten,
+		Constants.four.clone(),Constants.eleven,Constants.zero.clone(),Constants.border.clone()};
+	public static Tile[][] levelTwo =
+		{Constants.border,Constants.one,Constants.twoPill,Constants.a,Constants.b,Constants.c,
+		Constants.d,Constants.e,Constants.f,Constants.g,Constants.h,Constants.seven,
+		Constants.six,Constants.i,Constants.d.clone(),Constants.ten,Constants.j,Constants.two,
+		Constants.four,Constants.three,Constants.zero,Constants.border.clone()};
+	
+	public static Tile[][] levelThree =
+		{Constants.border,Constants.zero,Constants.three,Constants.k,Constants.l,Constants.z,
+		Constants.m,
+		Constants.n,Constants.o,Constants.p,Constants.q,Constants.r,Constants.s,
+		Constants.t,Constants.u,Constants.v,Constants.w,Constants.twoPill,Constants.x,
+		Constants.y,Constants.zero.clone(),Constants.border.clone()
+		};
+			
+	
+	public static Integer mapWidth = Constants.levelOne[0].length;
+	public static Integer startX = 16;
+	public static Integer startY = 315;
+	public static boolean startV = false;
+	public static boolean startP = true;
 }
 
 class ExamplePacman {
-	Pacman ex = new Pacman(false,true,1,45,0,true,0,3);
-    Worldstate w1 = new Worldstate(ex,new ArrayList<Ghost>(),new Map(Constants.testmap));
+	Pacman p = new Pacman(Constants.startV,Constants.startP,Constants.startX,Constants.startY,0,3);
+	Ghost[] g = 
+		{new Blinky(true,false,8,255),new Inky(true,false,12,255),new Pinky(true,false,8,375),new Sue(true,false,12,375)};
+    Worldstate w1 = new Worldstate(p,g,new Map(Constants.levelThree));
     /*
     void test(Tester t) {
     	t.checkExpect(this.ex.dnx(),0);
