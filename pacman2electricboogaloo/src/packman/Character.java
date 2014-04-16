@@ -10,6 +10,8 @@ public abstract class Character {
 	
 	boolean verticalDirection;
 	boolean positiveDirection;
+	boolean nextVertical = verticalDirection;
+	boolean nextPositive = positiveDirection;
 	Integer columnOrRow;
 	Integer positionOnOtherAxis;
 	
@@ -55,7 +57,28 @@ public abstract class Character {
 			return (this.positionOnOtherAxis / Constants.gridsize);
 		}
 	}
-	
+	Integer dx() {
+		Integer x = 0;
+		if(!this.verticalDirection) {
+			if(this.positiveDirection) {
+				x = 1;
+			} else {
+				x = -1;
+			}
+		}
+		return x;
+	}
+	Integer dy() {
+		Integer y = 0;
+		if(this.verticalDirection) {
+			if(this.positiveDirection) {
+				y = 1;
+			} else {
+				y = -1;
+			}
+		}
+		return y;
+	}
 	boolean atIntersection() {
 		if(this.positiveDirection) {
 			return this.positionOnOtherAxis % Constants.gridsize == Constants.gridsize/2 - 1;
@@ -63,6 +86,18 @@ public abstract class Character {
 			return this.positionOnOtherAxis % Constants.gridsize == Constants.gridsize/2;
 		}
 	}
-	
+	void goForth(Map m) {
+		if(this.verticalDirection){
+			this.positionOnOtherAxis = this.positionOnOtherAxis + this.dy();		
+		} else {
+			this.positionOnOtherAxis = ((this.positionOnOtherAxis + this.dx() + (Constants.gridsize*(m.yLength()-1))) % (Constants.gridsize*(m.yLength()-1)));
+		}
+	}
+	boolean turning() {
+		return this.nextVertical != this.verticalDirection;
+	}
+	boolean flipping() {
+		return !this.turning() && (this.nextPositive != this.positiveDirection);
+	}
 	abstract void move(Map m);
 }

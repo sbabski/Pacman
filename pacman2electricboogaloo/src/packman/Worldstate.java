@@ -22,14 +22,13 @@ public class Worldstate extends World{
 	}
 	
 	public World onTick() {
-		if(player.toggleScary) {
-			player.alternate();
-		}
 		player.onTick(map);
+		if(player.toggleScary) {
+			player = player.alternate();
+		}
 		for(Ghost g : enemies) {
 			g.move(map);
 		}
-		//System.out.println(player.getGridX().toString());
 		return this;
 	}
 	public World onKeyEvent(String ke) {
@@ -53,7 +52,9 @@ public class Worldstate extends World{
 	}
 
 	public WorldImage makeImage() {
-		return new OverlayImages(map.render(),player.render());
+		return new OverlayImages(map.render(),
+				new OverlayImages(player.render(),
+						new OverlayImages(player.renderScore(),player.renderLives(player.lives))));
 	}
 
 }

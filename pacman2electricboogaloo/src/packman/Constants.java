@@ -140,16 +140,18 @@ class Constants {
 		Constants.seven,Constants.eight,Constants.seven.clone(),
 		Constants.six.clone(),Constants.seven.clone(),Constants.one.clone(),
 		Constants.two.clone(),Constants.nine,Constants.ten,
-		Constants.four.clone(),Constants.eleven,Constants.zero.clone(),Constants.wall};
+		Constants.four.clone(),Constants.eleven,Constants.zero.clone(),
+		Constants.wall.clone()};
 	public static Tile[][] testmapTwo =
 		{Constants.wall,Constants.one,Constants.twoPill,
 		Constants.a,Constants.b,Constants.c,
 		Constants.d,Constants.e,Constants.f,
-		Constants.g,Constants.h}; 	
+		Constants.g,Constants.h};
+	public static Integer mapWidth = Constants.testmap[0].length;
 }
 
 class ExamplePacman {
-	Pacman ex = new Pacman(false,true,1,45,0,true,0);
+	Pacman ex = new Pacman(false,true,1,45,0,true,0,3);
     Worldstate w1 = new Worldstate(ex,new ArrayList<Ghost>(),new Map(Constants.testmap));
     /*
     void test(Tester t) {
