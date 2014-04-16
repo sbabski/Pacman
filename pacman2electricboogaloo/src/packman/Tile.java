@@ -22,7 +22,7 @@ class Pellet extends Eatable {
 	}
 	public WorldImage render(Posn loc) {
 		return new OverlayImages(
-				new RectangleImage(loc,Constants.gridsize,Constants.gridsize,new Blue()),
+				new RectangleImage(loc,Constants.gridsize,Constants.gridsize,new Black()),
 				new DiskImage(loc,Constants.gridsize/8,new White()));
 	}
 }
@@ -35,8 +35,8 @@ class Pill extends Eatable {
 	}
 	public WorldImage render(Posn loc) {
 		return new OverlayImages(
-				new RectangleImage(loc,Constants.gridsize,Constants.gridsize,new Blue()),
-				new DiskImage(loc,Constants.gridsize/5,new White()));
+				new RectangleImage(loc,Constants.gridsize,Constants.gridsize,new Black()),
+				new DiskImage(loc,Constants.gridsize/4,new White()));
 	}
 }
 
@@ -48,7 +48,7 @@ class Wall implements Tile {
 		return this;
 	}
 	public WorldImage render(Posn loc) {
-		return new RectangleImage(loc,Constants.gridsize,Constants.gridsize,new Black());
+		return new RectangleImage(loc,Constants.gridsize,Constants.gridsize,new Blue());
 	}
 }
 
@@ -60,7 +60,7 @@ class Path implements Tile {
 		return this;
 	}
 	public WorldImage render (Posn loc) {
-		return new RectangleImage(loc,Constants.gridsize,Constants.gridsize,new Blue());
+		return new RectangleImage(loc,Constants.gridsize,Constants.gridsize,new Black());
 	}
 }
 

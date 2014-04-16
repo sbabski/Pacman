@@ -26,6 +26,7 @@ public abstract class Character {
 	Integer getXCoord() {
 		if(this.verticalDirection){
 			return Constants.gridsize * this.columnOrRow + (Constants.gridsize/2);
+			//return Constants.gridsize * this.columnOrRow + (Constants.gridsize/2);
 		} else { 
 			return this.positionOnOtherAxis;
 		} 

@@ -33,8 +33,9 @@ public class Pacman extends Character {
 	boolean canGoNextDirection(Map m) {
 		Integer y = this.getGridY();
 		Integer x = this.getGridX();
-		y = (y + this.dny()) % (m.yLength()-1);
-		x = (x + this.dnx()) % (m.xLength()-1);
+		y = ((y + this.dny()) % (m.yLength()-1));
+		x = ((x + (m.xLength()-1) + this.dnx()) % (m.xLength()-1));
+		System.out.println(x.toString());
 		return m.board[y][x].traversable();
 	}
 	String printIt() {
@@ -98,11 +99,13 @@ public class Pacman extends Character {
 			if(this.canGoNextDirection(m) && this.turning()) {
 				this.switchDirection();
 			} 
-		} 
+		}
 		if(this.verticalDirection){
-			this.positionOnOtherAxis = this.positionOnOtherAxis + this.dy();		
+			this.positionOnOtherAxis = ((this.positionOnOtherAxis + this.dy() + (Constants.gridsize*(m.xLength()-1))) % (Constants.gridsize*(m.xLength()-1)));		
+			System.out.println(this.positionOnOtherAxis.toString());
 		} else {
-			this.positionOnOtherAxis = this.positionOnOtherAxis + this.dx();
+			this.positionOnOtherAxis = ((this.positionOnOtherAxis + this.dx() + (Constants.gridsize*(m.yLength()-1))) % (Constants.gridsize*(m.yLength()-1)));
+			System.out.println(this.positionOnOtherAxis.toString());
 		}
 	}
 	boolean turning() {
@@ -112,17 +115,17 @@ public class Pacman extends Character {
 		return !this.turning() && (this.nextPositive != this.positiveDirection);
 	}
 	void switchDirection() {
+		if(this.nextVertical) {
+			Integer c = this.getGridX();
+			this.positionOnOtherAxis = this.getYCoord();
+			this.columnOrRow = c;
+		} else {
+			Integer c = this.getGridY();
+			this.positionOnOtherAxis = this.getXCoord();
+			this.columnOrRow = c;
+		}
 		this.verticalDirection = this.nextVertical;
 		this.positiveDirection = this.nextPositive;
-		if(this.nextVertical) {
-			this.columnOrRow = this.getGridX();
-			this.positionOnOtherAxis = this.getXCoord();
-			//System.out.println(this.columnOrRow.toString());
-		} else {
-			this.columnOrRow = this.getGridY();
-			this.positionOnOtherAxis = this.getYCoord();
-			//System.out.println(this.columnOrRow.toString());
-		}
 	}
 	Pacman alternate() {
 		return new ScaryPacman(this);
