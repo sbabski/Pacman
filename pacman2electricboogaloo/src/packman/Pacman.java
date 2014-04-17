@@ -51,6 +51,7 @@ public class Pacman extends Character {
 		}
 		if(this.atIntersection()) {
 			m.board[this.getGridY()][this.getGridX()] = m.board[this.getGridY()][this.getGridX()].eat(this);
+			m.hasPellets();
 			if(this.canGoNextDirection(m) && this.turning()) {
 				this.switchDirection();
 			}

@@ -9,10 +9,14 @@ interface Tile {
 	WorldImage render(Posn loc);
 	Tile eat(Pacman p);
 	boolean traversable();
+	boolean isEatable();
 }
 
 abstract class Eatable implements Tile {
 	public boolean traversable() {
+		return true;
+	}
+	public boolean isEatable() {
 		return true;
 	}
 }
@@ -64,6 +68,9 @@ class Wall implements Tile {
 	public boolean traversable() {
 		return false;
 	}
+	public boolean isEatable() {
+		return false;
+	}
 	public Tile eat(Pacman p) {
 		return this;
 	}
@@ -75,6 +82,9 @@ class Wall implements Tile {
 class Path implements Tile {
 	public boolean traversable() {
 		return true;
+	}
+	public boolean isEatable() {
+		return false;
 	}
 	public Tile eat(Pacman p) {
 		return this;

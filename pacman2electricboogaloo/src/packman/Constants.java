@@ -61,23 +61,25 @@ class Constants {
 
 	
 	public static Tile[][] levelOne = 
-		{Constants.border,Constants.one,Constants.two,Constants.twoPill,Constants.zero,Constants.three,
-		Constants.four,Constants.five,Constants.six,Constants.seven,Constants.eight,Constants.seven.clone(),
-		Constants.six.clone(),Constants.seven.clone(),Constants.one.clone(),Constants.two.clone(),Constants.nine,Constants.ten,
-		Constants.four.clone(),Constants.eleven,Constants.zero.clone(),Constants.border.clone()};
+		{Constants.border.clone(),Constants.one.clone(),Constants.two.clone(),Constants.twoPill.clone(),Constants.zero.clone(),Constants.three.clone(),
+		Constants.four.clone(),Constants.five.clone(),Constants.six.clone(),Constants.seven.clone(),Constants.eight.clone(),Constants.seven.clone(),
+		Constants.six.clone(),Constants.seven.clone(),Constants.one.clone(),Constants.two.clone(),Constants.nine.clone(),Constants.ten.clone(),
+		Constants.four.clone(),Constants.eleven.clone(),Constants.zero.clone(),Constants.border.clone()};
 	public static Tile[][] levelTwo =
-		{Constants.border,Constants.one,Constants.twoPill,Constants.a,Constants.b,Constants.c,
-		Constants.d,Constants.e,Constants.f,Constants.g,Constants.h,Constants.seven,
-		Constants.six,Constants.i,Constants.d.clone(),Constants.ten,Constants.j,Constants.two,
-		Constants.four,Constants.three,Constants.zero,Constants.border.clone()};
+		{Constants.border.clone(),Constants.one.clone(),Constants.twoPill.clone(),Constants.a.clone(),Constants.b.clone(),Constants.c.clone(),
+		Constants.d.clone(),Constants.e.clone(),Constants.f.clone(),Constants.g.clone(),Constants.h.clone(),Constants.seven.clone(),
+		Constants.six.clone(),Constants.i.clone(),Constants.d.clone(),Constants.ten.clone(),Constants.j.clone(),Constants.two.clone(),
+		Constants.four.clone(),Constants.three.clone(),Constants.zero.clone(),Constants.border.clone()};
 	
 	public static Tile[][] levelThree =
-		{Constants.border,Constants.zero,Constants.three,Constants.k,Constants.l,Constants.z,
-		Constants.m,
-		Constants.n,Constants.o,Constants.p,Constants.q,Constants.r,Constants.s,
-		Constants.t,Constants.u,Constants.v,Constants.w,Constants.twoPill,Constants.x,
-		Constants.y,Constants.zero.clone(),Constants.border.clone()
+		{Constants.border.clone(),Constants.zero.clone(),Constants.three.clone(),Constants.k.clone(),Constants.l.clone(),Constants.z.clone(),
+		Constants.m.clone(),Constants.n.clone(),Constants.o.clone(),Constants.p.clone(),Constants.q.clone(),Constants.r.clone(),Constants.s.clone(),
+		Constants.t.clone(),Constants.u.clone(),Constants.v.clone(),Constants.w.clone(),Constants.twoPill.clone(),Constants.x.clone(),
+		Constants.y.clone(),Constants.zero.clone(),Constants.border.clone()
 		};
+	
+	public static Tile[][][] boards =
+		{Constants.levelOne,Constants.levelTwo,Constants.levelThree};
 			
 	
 	public static Integer mapWidth = Constants.levelOne[0].length;
@@ -85,6 +87,7 @@ class Constants {
 	public static Integer startY = 315;
 	public static boolean startV = false;
 	public static boolean startP = true;
+	public boolean levelSwitch = false;
 }
 
 class ExamplePacman {
@@ -94,5 +97,5 @@ class ExamplePacman {
     Worldstate w1 = new Worldstate(p,g,new Map(Constants.levelThree));	
 	
 	// run the first game	
-	boolean runAnimation = this.w1.bigBang(630,700,.01);
+	boolean runAnimation = this.w1.bigBang(630,690,.007);
 }

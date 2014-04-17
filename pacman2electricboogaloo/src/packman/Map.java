@@ -5,6 +5,7 @@ import javalib.worldimages.*;
 
 public class Map {
 	Tile[][] board;
+	boolean levelSwitch = false;
 	
 	Map(Tile[][] b) {
 		this.board = b;
@@ -16,7 +17,19 @@ public class Map {
 	Integer yLength() {
 		return this.board.length;
 	}
-	
+	void hasPellets() {
+		this.levelSwitch = true;
+		for (Tile[] i : this.board) {
+			for (Tile j : i) {
+				if(j.isEatable()) {
+					this.levelSwitch = false;
+				}
+			}
+			if(!this.levelSwitch) {
+				break;
+			}
+		}
+	}
 	WorldImage render() {
 		Integer w = Constants.gridsize * board[0].length;
 		Integer h = Constants.gridsize * board.length;

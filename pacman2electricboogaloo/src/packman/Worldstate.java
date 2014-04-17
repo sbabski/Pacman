@@ -14,6 +14,7 @@ public class Worldstate extends World{
 	Pacman player;
 	Ghost[] enemies;
 	Map map;
+	Integer levelIndex = 0;
 
 	Worldstate(Pacman p, Ghost[] g, Map m){
 		this.player = p;
@@ -23,6 +24,13 @@ public class Worldstate extends World{
 	
 	public World onTick() {
 		player.onTick(map);
+		if(map.levelSwitch) {
+			this.switchLevel();
+			player.positiveDirection = Constants.startP;
+			player.verticalDirection = Constants.startV;
+			player.columnOrRow = Constants.startX;
+			player.positionOnOtherAxis = Constants.startY;
+		}
 		if(player.toggleScary) {
 			player = player.alternate();
 		}
@@ -49,6 +57,10 @@ public class Worldstate extends World{
 			}
 		}
 		return this;
+	}
+	public void switchLevel() {
+		this.levelIndex = ((this.levelIndex + 1) % 3);
+		map.board = Constants.boards[this.levelIndex];
 	}
 	public WorldImage renderGhosts(Integer i) {
 		WorldImage r = enemies[i-1].render();
