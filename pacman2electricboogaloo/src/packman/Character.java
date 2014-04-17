@@ -28,7 +28,6 @@ public abstract class Character {
 	Integer getXCoord() {
 		if(this.verticalDirection){
 			return Constants.gridsize * this.columnOrRow + (Constants.gridsize/2);
-			//return Constants.gridsize * this.columnOrRow + (Constants.gridsize/2);
 		} else { 
 			return this.positionOnOtherAxis;
 		} 
@@ -80,10 +79,13 @@ public abstract class Character {
 		return y;
 	}
 	boolean canGoNextDirection(Map m) {
+		return this.canGoGivenDirection(m, this.dnx(), this.dny());
+	}
+	boolean canGoGivenDirection(Map m, Integer dx,Integer dy) {
 		Integer y = this.getGridY();
 		Integer x = this.getGridX();
-		y = ((y + this.dny()) % (m.yLength()-1));
-		x = ((x + (m.xLength()-1) + this.dnx()) % (m.xLength()-1));
+		y = ((y + dy) % (m.yLength()-1));
+		x = ((x + (m.xLength()-1) + dx) % (m.xLength()-1));
 		return m.board[y][x].traversable();
 	}
 	Integer dnx() {
@@ -148,6 +150,4 @@ public abstract class Character {
 		this.verticalDirection = this.nextVertical;
 		this.positiveDirection = this.nextPositive;
 	}
-	abstract void move(Map m);
-
 }

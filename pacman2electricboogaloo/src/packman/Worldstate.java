@@ -29,7 +29,6 @@ public class Worldstate extends World{
 		for(Ghost g : enemies) {
 			g.onTick(map,player);
 		}
-		System.out.println(this.player.lives.toString());
 		return this;
 	}
 	public World onKeyEvent(String ke) {

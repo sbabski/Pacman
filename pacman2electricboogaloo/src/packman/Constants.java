@@ -91,17 +91,8 @@ class ExamplePacman {
 	Pacman p = new Pacman(Constants.startV,Constants.startP,Constants.startX,Constants.startY,0,3);
 	Ghost[] g = 
 		{new Blinky(true,false,8,255),new Inky(true,false,12,255),new Pinky(true,false,8,375),new Sue(true,false,12,375)};
-    Worldstate w1 = new Worldstate(p,g,new Map(Constants.levelThree));
-    /*
-    void test(Tester t) {
-    	t.checkExpect(this.ex.dnx(),0);
-    	t.checkExpect(this.ex.dny(),1);
-    	this.w1.onKeyEvent("up");
-    	t.checkExpect(this.ex.dnx(),-1);
-    	t.checkExpect(this.ex.dny(),0);
-    }
-    */
+    Worldstate w1 = new Worldstate(p,g,new Map(Constants.levelThree));	
 	
 	// run the first game	
-	boolean runAnimation = this.w1.bigBang(630,700,.02);
+	boolean runAnimation = this.w1.bigBang(630,700,.01);
 }
