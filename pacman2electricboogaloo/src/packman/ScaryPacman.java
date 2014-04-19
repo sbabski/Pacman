@@ -4,7 +4,7 @@ import javalib.colors.*;
 import javalib.worldimages.*;
 
 public class ScaryPacman extends Pacman {
-	Integer timer = 600;
+	Integer timer = 666;
 	
 	ScaryPacman(boolean v, boolean p, Integer c, Integer pa, Integer sc, Integer l) {
 		super(v, p, c, pa,sc,l);
